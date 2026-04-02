@@ -1,0 +1,21 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HeroSection from '../components/sections/HeroSection';
+import AboutSection from '../components/sections/AboutSection';
+import ProjectsSection from '../components/sections/ProjectsSection';
+import ContactSection from '../components/sections/ContactSection';
+---
+
+<MainLayout>
+  <!-- Hero: immediate load for the first screen -->
+  <HeroSection client:load />
+  
+  <!-- About: hydrate when visible for performance -->
+  <AboutSection client:visible />
+  
+  <!-- Projects: hydrate when visible -->
+  <ProjectsSection client:visible />
+  
+  <!-- Contact: hydrate when visible -->
+  <ContactSection client:visible />
+</MainLayout>

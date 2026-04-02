@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Thanh Trong's Quest | Pixel Art Portfolio",
+  description = "Welcome to the quest of Võ Thanh Trọng — IT Engineer & Full Stack Developer. Explore projects, skills, and adventures in this pixel art portfolio."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Võ Thanh Trọng" />
+    <meta name="keywords" content="portfolio, pixel art, developer, full stack, IT engineer, Võ Thanh Trọng" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <title>{title}</title>
+    
+    <!-- Favicon: pixel heart -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='2' width='4' height='4' fill='%23b13e53'/><rect x='8' y='2' width='4' height='4' fill='%23b13e53'/><rect x='0' y='4' width='4' height='4' fill='%23b13e53'/><rect x='4' y='4' width='4' height='4' fill='%23ef7d57'/><rect x='8' y='4' width='4' height='4' fill='%23b13e53'/><rect x='12' y='4' width='4' height='4' fill='%23b13e53'/><rect x='0' y='8' width='4' height='4' fill='%23b13e53'/><rect x='4' y='8' width='4' height='4' fill='%23b13e53'/><rect x='8' y='8' width='4' height='4' fill='%23b13e53'/><rect x='12' y='8' width='4' height='4' fill='%23b13e53'/><rect x='2' y='10' width='4' height='4' fill='%23b13e53'/><rect x='8' y='10' width='4' height='4' fill='%23b13e53'/><rect x='4' y='12' width='4' height='4' fill='%23b13e53'/></svg>" />
+  </head>
+  <body>
+    <!-- Scanline CRT overlay effect -->
+    <div class="scanline-overlay" aria-hidden="true"></div>
+    
+    <!-- Starfield background -->
+    <div class="starfield" aria-hidden="true" id="starfield"></div>
+    
+    <main>
+      <slot />
+    </main>
+
+    <!-- Generate random stars for background -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        var starfield = document.getElementById('starfield');
+        if (!starfield) return;
+        
+        var starCount = 80;
+        for (var i = 0; i < starCount; i++) {
+          var star = document.createElement('div');
+          star.className = 'star';
+          star.style.left = Math.random() * 100 + '%';
+          star.style.top = Math.random() * 100 + '%';
+          star.style.animationDelay = Math.random() * 3 + 's';
+          star.style.animationDuration = (2 + Math.random() * 3) + 's';
+          
+          if (Math.random() > 0.7) {
+            star.style.width = '2px';
+            star.style.height = '2px';
+            star.style.opacity = '0.5';
+          }
+          
+          starfield.appendChild(star);
+        }
+      });
+    </script>
+  </body>
+</html>

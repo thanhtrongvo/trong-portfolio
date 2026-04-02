@@ -1,0 +1,388 @@
+@import "tailwindcss";
+
+/* ========================================
+   PIXEL ART PORTFOLIO — DESIGN SYSTEM
+   ======================================== */
+
+/* ========================================
+   TAILWIND v4 THEME CONFIG
+   ======================================== */
+@theme {
+  /* Retro 16-bit Color Palette */
+  --color-pixel-black: #1a1c2c;
+  --color-pixel-purple: #5d275d;
+  --color-pixel-red: #b13e53;
+  --color-pixel-orange: #ef7d57;
+  --color-pixel-yellow: #ffcd75;
+  --color-pixel-lime: #a7f070;
+  --color-pixel-green: #38b764;
+  --color-pixel-teal: #257179;
+  --color-pixel-blue: #29366f;
+  --color-pixel-indigo: #3b5dc9;
+  --color-pixel-sky: #41a6f6;
+  --color-pixel-cyan: #73eff7;
+  --color-pixel-white: #f4f4f4;
+  --color-pixel-light: #94b0c2;
+  --color-pixel-gray: #566c86;
+  --color-pixel-dark: #333c57;
+
+  /* Font families */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-pixel-body: 'VT323', monospace;
+
+  /* Spacing scale (multiples of 4 for pixel-perfect alignment) */
+  --spacing-pixel-1: 4px;
+  --spacing-pixel-2: 8px;
+  --spacing-pixel-3: 12px;
+  --spacing-pixel-4: 16px;
+  --spacing-pixel-6: 24px;
+  --spacing-pixel-8: 32px;
+
+  /* Animation */
+  --animate-blink: blink 1s step-end infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-pixel-pulse: pixel-pulse 2s step-end infinite;
+}
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes pixel-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 205, 117, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(255, 205, 117, 0); }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 1; }
+  10% { opacity: 0.98; }
+  15% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+* {
+  box-sizing: border-box;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-pixel-body);
+  background-color: var(--color-pixel-black);
+  color: var(--color-pixel-white);
+  cursor: url('/cursors/pixel-arrow.svg') 0 0, auto;
+  overflow-x: hidden;
+  animation: crt-flicker 4s infinite;
+  line-height: 1.6;
+}
+
+/* Custom cursor for interactive elements */
+a, button, [role="button"], input[type="submit"],
+.cursor-pointer, .pixel-btn {
+  cursor: url('/cursors/pixel-hand.svg') 8 0, pointer;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-pixel-yellow);
+  color: var(--color-pixel-black);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-pixel-black);
+  border-left: 4px solid var(--color-pixel-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-pixel-gray);
+  border: 2px solid var(--color-pixel-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-pixel-yellow);
+}
+
+/* ========================================
+   PIXEL ART UTILITIES
+   ======================================== */
+
+/* Pixel border — classic 8-bit box shadow border */
+.pixel-border {
+  border: none;
+  box-shadow:
+    /* Top */
+    0 -4px 0 0 var(--color-pixel-light),
+    /* Right */
+    4px 0 0 0 var(--color-pixel-gray),
+    /* Bottom */
+    0 4px 0 0 var(--color-pixel-gray),
+    /* Left */
+    -4px 0 0 0 var(--color-pixel-light),
+    /* Top-Left highlight */
+    -4px -4px 0 0 var(--color-pixel-white),
+    /* Top-Right */
+    4px -4px 0 0 var(--color-pixel-light),
+    /* Bottom-Left */
+    -4px 4px 0 0 var(--color-pixel-gray),
+    /* Bottom-Right shadow */
+    4px 4px 0 0 var(--color-pixel-dark);
+}
+
+/* Inset pixel border (pressed state) */
+.pixel-border-inset {
+  border: none;
+  box-shadow:
+    0 -4px 0 0 var(--color-pixel-gray),
+    4px 0 0 0 var(--color-pixel-light),
+    0 4px 0 0 var(--color-pixel-light),
+    -4px 0 0 0 var(--color-pixel-gray),
+    -4px -4px 0 0 var(--color-pixel-dark),
+    4px -4px 0 0 var(--color-pixel-gray),
+    -4px 4px 0 0 var(--color-pixel-gray),
+    4px 4px 0 0 var(--color-pixel-white);
+}
+
+/* Colored pixel borders */
+.pixel-border-yellow {
+  box-shadow:
+    0 -4px 0 0 var(--color-pixel-yellow),
+    4px 0 0 0 var(--color-pixel-orange),
+    0 4px 0 0 var(--color-pixel-orange),
+    -4px 0 0 0 var(--color-pixel-yellow),
+    -4px -4px 0 0 var(--color-pixel-yellow),
+    4px -4px 0 0 var(--color-pixel-yellow),
+    -4px 4px 0 0 var(--color-pixel-orange),
+    4px 4px 0 0 var(--color-pixel-orange);
+}
+
+.pixel-border-green {
+  box-shadow:
+    0 -4px 0 0 var(--color-pixel-lime),
+    4px 0 0 0 var(--color-pixel-green),
+    0 4px 0 0 var(--color-pixel-green),
+    -4px 0 0 0 var(--color-pixel-lime),
+    -4px -4px 0 0 var(--color-pixel-lime),
+    4px -4px 0 0 var(--color-pixel-lime),
+    -4px 4px 0 0 var(--color-pixel-green),
+    4px 4px 0 0 var(--color-pixel-green);
+}
+
+/* Pixel button styles */
+.pixel-btn {
+  font-family: var(--font-pixel);
+  background-color: var(--color-pixel-dark);
+  color: var(--color-pixel-yellow);
+  padding: 16px 32px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.1s step-end;
+}
+
+.pixel-btn:hover {
+  background-color: var(--color-pixel-yellow);
+  color: var(--color-pixel-black);
+  transform: scale(1.05);
+}
+
+.pixel-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   SCANLINE OVERLAY
+   ======================================== */
+.scanline-overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.05) 0px,
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ========================================
+   STARFIELD BACKGROUND
+   ======================================== */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-pixel-white);
+  animation: star-twinkle 2s ease-in-out infinite;
+}
+
+/* ========================================
+   STAT BAR (RPG HP Bar)
+   ======================================== */
+.stat-bar-container {
+  background-color: var(--color-pixel-dark);
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+.stat-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 8px,
+    rgba(0, 0, 0, 0.2) 8px,
+    rgba(0, 0, 0, 0.2) 10px
+  );
+}
+
+/* ========================================
+   INVENTORY GRID (Project Cards)
+   ======================================== */
+.inventory-slot {
+  background-color: var(--color-pixel-dark);
+  padding: 24px;
+  position: relative;
+  transition: transform 0.1s step-end;
+}
+
+.inventory-slot:hover {
+  background-color: #3a4466;
+}
+
+.inventory-slot::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px dashed var(--color-pixel-gray);
+  pointer-events: none;
+}
+
+/* ========================================
+   RPG DIALOG BOX
+   ======================================== */
+.dialog-box {
+  background-color: var(--color-pixel-blue);
+  padding: 32px;
+  position: relative;
+}
+
+.dialog-box::after {
+  content: '▼';
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  color: var(--color-pixel-yellow);
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  animation: blink 1s step-end infinite;
+}
+
+/* ========================================
+   SECTION HEADINGS
+   ======================================== */
+.section-title {
+  font-family: var(--font-pixel);
+  font-size: clamp(16px, 3vw, 28px);
+  color: var(--color-pixel-yellow);
+  text-align: center;
+  text-shadow:
+    4px 4px 0 var(--color-pixel-orange),
+    -1px -1px 0 var(--color-pixel-black);
+  margin-bottom: 48px;
+  letter-spacing: 2px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .pixel-btn {
+    padding: 12px 20px;
+    font-size: 10px;
+  }
+
+  .section-title {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+}
