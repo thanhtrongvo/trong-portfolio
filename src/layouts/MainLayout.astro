@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import HUD from '../components/ui/HUD';
+import WeatherEffects from '../components/ui/WeatherEffects';
+import CursorFollower from '../components/ui/CursorFollower';
 
 interface Props {
   title?: string;
@@ -40,37 +43,17 @@ const {
     <!-- Scanline CRT overlay effect -->
     <div class="scanline-overlay" aria-hidden="true"></div>
     
-    <!-- Starfield background -->
-    <div class="starfield" aria-hidden="true" id="starfield"></div>
+    <!-- Dynamic Weather Particle Canvas -->
+    <WeatherEffects client:load />
+    
+    <!-- HUD Header -->
+    <HUD client:load />
+    
+    <!-- Custom Cursor Follower with Sparks -->
+    <CursorFollower client:load />
     
     <main>
       <slot />
     </main>
-
-    <!-- Generate random stars for background -->
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function() {
-        var starfield = document.getElementById('starfield');
-        if (!starfield) return;
-        
-        var starCount = 80;
-        for (var i = 0; i < starCount; i++) {
-          var star = document.createElement('div');
-          star.className = 'star';
-          star.style.left = Math.random() * 100 + '%';
-          star.style.top = Math.random() * 100 + '%';
-          star.style.animationDelay = Math.random() * 3 + 's';
-          star.style.animationDuration = (2 + Math.random() * 3) + 's';
-          
-          if (Math.random() > 0.7) {
-            star.style.width = '2px';
-            star.style.height = '2px';
-            star.style.opacity = '0.5';
-          }
-          
-          starfield.appendChild(star);
-        }
-      });
-    </script>
   </body>
 </html>

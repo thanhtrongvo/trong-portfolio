@@ -1,45 +1,46 @@
 import { motion } from 'framer-motion';
 import ScrollReveal from '../motion/ScrollReveal';
+import { audioSystem } from '../../utils/audio';
 
-// Pixel art icons
+// Pixel art icons using theme variables
 const EmailIcon = () => (
   <svg viewBox="0 0 16 12" width="32" height="24" style={{ imageRendering: 'pixelated' as const }}>
-    <rect x="0" y="0" width="16" height="12" fill="#333c57" />
-    <rect x="1" y="1" width="14" height="10" fill="#29366f" />
-    <rect x="0" y="0" width="2" height="2" fill="#ffcd75" />
-    <rect x="14" y="0" width="2" height="2" fill="#ffcd75" />
-    <rect x="2" y="2" width="2" height="2" fill="#ffcd75" />
-    <rect x="12" y="2" width="2" height="2" fill="#ffcd75" />
-    <rect x="4" y="4" width="2" height="2" fill="#ffcd75" />
-    <rect x="10" y="4" width="2" height="2" fill="#ffcd75" />
-    <rect x="6" y="6" width="4" height="2" fill="#ffcd75" />
+    <rect x="0" y="0" width="16" height="12" fill="var(--color-pixel-dark)" />
+    <rect x="1" y="1" width="14" height="10" fill="var(--color-pixel-blue)" />
+    <rect x="0" y="0" width="2" height="2" fill="var(--color-pixel-yellow)" />
+    <rect x="14" y="0" width="2" height="2" fill="var(--color-pixel-yellow)" />
+    <rect x="2" y="2" width="2" height="2" fill="var(--color-pixel-yellow)" />
+    <rect x="12" y="2" width="2" height="2" fill="var(--color-pixel-yellow)" />
+    <rect x="4" y="4" width="2" height="2" fill="var(--color-pixel-yellow)" />
+    <rect x="10" y="4" width="2" height="2" fill="var(--color-pixel-yellow)" />
+    <rect x="6" y="6" width="4" height="2" fill="var(--color-pixel-yellow)" />
   </svg>
 );
 
 const GithubIcon = () => (
   <svg viewBox="0 0 16 16" width="32" height="32" style={{ imageRendering: 'pixelated' as const }}>
-    <rect x="4" y="0" width="8" height="2" fill="#f4f4f4" />
-    <rect x="2" y="2" width="12" height="2" fill="#f4f4f4" />
-    <rect x="2" y="4" width="12" height="2" fill="#f4f4f4" />
-    <rect x="4" y="4" width="2" height="2" fill="#1a1c2c" />
-    <rect x="10" y="4" width="2" height="2" fill="#1a1c2c" />
-    <rect x="2" y="6" width="12" height="2" fill="#f4f4f4" />
-    <rect x="4" y="8" width="8" height="2" fill="#f4f4f4" />
-    <rect x="2" y="10" width="4" height="2" fill="#f4f4f4" />
-    <rect x="10" y="10" width="4" height="2" fill="#f4f4f4" />
-    <rect x="2" y="12" width="2" height="2" fill="#f4f4f4" />
-    <rect x="12" y="12" width="2" height="2" fill="#f4f4f4" />
+    <rect x="4" y="0" width="8" height="2" fill="var(--color-pixel-white)" />
+    <rect x="2" y="2" width="12" height="2" fill="var(--color-pixel-white)" />
+    <rect x="2" y="4" width="12" height="2" fill="var(--color-pixel-white)" />
+    <rect x="4" y="4" width="2" height="2" fill="var(--color-pixel-black)" />
+    <rect x="10" y="4" width="2" height="2" fill="var(--color-pixel-black)" />
+    <rect x="2" y="6" width="12" height="2" fill="var(--color-pixel-white)" />
+    <rect x="4" y="8" width="8" height="2" fill="var(--color-pixel-white)" />
+    <rect x="2" y="10" width="4" height="2" fill="var(--color-pixel-white)" />
+    <rect x="10" y="10" width="4" height="2" fill="var(--color-pixel-white)" />
+    <rect x="2" y="12" width="2" height="2" fill="var(--color-pixel-white)" />
+    <rect x="12" y="12" width="2" height="2" fill="var(--color-pixel-white)" />
   </svg>
 );
 
 const LinkedInIcon = () => (
   <svg viewBox="0 0 16 16" width="32" height="32" style={{ imageRendering: 'pixelated' as const }}>
-    <rect x="0" y="0" width="16" height="16" fill="#3b5dc9" />
-    <rect x="2" y="2" width="3" height="3" fill="#f4f4f4" />
-    <rect x="2" y="6" width="3" height="8" fill="#f4f4f4" />
-    <rect x="7" y="6" width="3" height="8" fill="#f4f4f4" />
-    <rect x="10" y="8" width="3" height="6" fill="#f4f4f4" />
-    <rect x="10" y="6" width="3" height="2" fill="#f4f4f4" />
+    <rect x="0" y="0" width="16" height="16" fill="var(--color-pixel-indigo)" />
+    <rect x="2" y="2" width="3" height="3" fill="var(--color-pixel-white)" />
+    <rect x="2" y="6" width="3" height="8" fill="var(--color-pixel-white)" />
+    <rect x="7" y="6" width="3" height="8" fill="var(--color-pixel-white)" />
+    <rect x="10" y="8" width="3" height="6" fill="var(--color-pixel-white)" />
+    <rect x="10" y="6" width="3" height="2" fill="var(--color-pixel-white)" />
   </svg>
 );
 
@@ -59,7 +60,7 @@ const contactLinks = [
   {
     icon: <LinkedInIcon />,
     label: 'LINKEDIN',
-    value: 'Võ Thanh Trọng',
+    value: 'Vo Thanh Trong',
     href: 'https://www.linkedin.com/in/thanhtrongvo/',
   },
 ];
@@ -82,7 +83,7 @@ export default function ContactSection() {
               style={{
                 fontFamily: "'Press Start 2P', monospace",
                 fontSize: '10px',
-                color: '#a7f070',
+                color: 'var(--color-pixel-lime)',
                 marginBottom: '8px',
               }}
             >
@@ -92,7 +93,7 @@ export default function ContactSection() {
               style={{
                 fontFamily: "'VT323', monospace",
                 fontSize: '24px',
-                color: '#f4f4f4',
+                color: 'var(--color-pixel-white)',
                 lineHeight: '1.5',
               }}
             >
@@ -110,9 +111,11 @@ export default function ContactSection() {
                 href={contact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 no-underline"
+                onMouseEnter={() => audioSystem?.playHoverSound()}
+                onClick={() => audioSystem?.playClickSound()}
+                className="flex items-center gap-4 p-4 no-underline border-2 border-transparent hover:border-[var(--color-pixel-yellow)] transition-all duration-100"
                 style={{
-                  backgroundColor: '#333c57',
+                  backgroundColor: 'var(--color-pixel-dark)',
                   cursor: "url('/cursors/pixel-hand.svg') 8 0, pointer",
                 }}
                 initial={{ opacity: 0, x: -30 }}
@@ -120,9 +123,9 @@ export default function ContactSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.3 + index * 0.15 }}
                 whileHover={{
-                  backgroundColor: '#3a4466',
+                  backgroundColor: 'var(--color-pixel-blue)',
                   x: 8,
-                  transition: { duration: 0.1 },
+                  boxShadow: '0 0 10px var(--color-pixel-yellow)',
                 }}
               >
                 <div className="shrink-0">{contact.icon}</div>
@@ -131,7 +134,7 @@ export default function ContactSection() {
                     style={{
                       fontFamily: "'Press Start 2P', monospace",
                       fontSize: '9px',
-                      color: '#ffcd75',
+                      color: 'var(--color-pixel-yellow)',
                       marginBottom: '4px',
                     }}
                   >
@@ -141,7 +144,7 @@ export default function ContactSection() {
                     style={{
                       fontFamily: "'VT323', monospace",
                       fontSize: '22px',
-                      color: '#94b0c2',
+                      color: 'var(--color-pixel-light)',
                     }}
                   >
                     {contact.value}
@@ -152,7 +155,7 @@ export default function ContactSection() {
                   style={{
                     fontFamily: "'Press Start 2P', monospace",
                     fontSize: '12px',
-                    color: '#566c86',
+                    color: 'var(--color-pixel-gray)',
                   }}
                   animate={{ x: [0, 4, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
@@ -167,6 +170,8 @@ export default function ContactSection() {
           <div className="text-center mt-8">
             <motion.a
               href="mailto:votrong1471@gmail.com?subject=Guild%20Invitation"
+              onMouseEnter={() => audioSystem?.playHoverSound()}
+              onClick={() => audioSystem?.playClickSound()}
               className="pixel-btn pixel-border inline-block no-underline"
               style={{ margin: '8px' }}
               whileHover={{ scale: 1.05 }}
@@ -185,18 +190,18 @@ export default function ContactSection() {
           style={{
             fontFamily: "'Press Start 2P', monospace",
             fontSize: '8px',
-            color: '#566c86',
+            color: 'var(--color-pixel-gray)',
             lineHeight: '2.5',
           }}
         >
-          <p>CRAFTED WITH ♥ BY VÕ THANH TRỌNG</p>
+          <p>CRAFTED WITH ♥ BY VO THANH TRONG</p>
           <p style={{ marginTop: '8px' }}>© 2026 • ALL RIGHTS RESERVED</p>
           <div
             className="mt-4 mx-auto"
             style={{
               width: '64px',
               height: '4px',
-              background: 'linear-gradient(90deg, #b13e53, #ef7d57, #ffcd75, #a7f070, #3b5dc9, #5d275d)',
+              background: 'linear-gradient(90deg, var(--color-pixel-red), var(--color-pixel-orange), var(--color-pixel-yellow), var(--color-pixel-lime), var(--color-pixel-indigo), var(--color-pixel-purple))',
               imageRendering: 'auto',
             }}
           />

@@ -91,6 +91,71 @@
   50% { opacity: 1; }
 }
 
+
+/* ========================================
+   THEMES
+   ======================================== */
+
+/* Classic Game Boy Theme */
+html[data-theme="gameboy"] {
+  --color-pixel-black: #0f380f;
+  --color-pixel-purple: #306230;
+  --color-pixel-red: #306230;
+  --color-pixel-orange: #8bac0f;
+  --color-pixel-yellow: #9bbc0f;
+  --color-pixel-lime: #9bbc0f;
+  --color-pixel-green: #8bac0f;
+  --color-pixel-teal: #306230;
+  --color-pixel-blue: #306230;
+  --color-pixel-indigo: #306230;
+  --color-pixel-sky: #8bac0f;
+  --color-pixel-cyan: #9bbc0f;
+  --color-pixel-white: #9bbc0f;
+  --color-pixel-light: #8bac0f;
+  --color-pixel-gray: #306230;
+  --color-pixel-dark: #0f380f;
+}
+
+/* Cyberpunk Retro Theme */
+html[data-theme="cyberpunk"] {
+  --color-pixel-black: #0b001a;
+  --color-pixel-purple: #790079;
+  --color-pixel-red: #ff0055;
+  --color-pixel-orange: #ff5500;
+  --color-pixel-yellow: #ffff00;
+  --color-pixel-lime: #00ff66;
+  --color-pixel-green: #00e676;
+  --color-pixel-teal: #00bfa5;
+  --color-pixel-blue: #1a0033;
+  --color-pixel-indigo: #3d0099;
+  --color-pixel-sky: #00b0ff;
+  --color-pixel-cyan: #00e5ff;
+  --color-pixel-white: #ffffff;
+  --color-pixel-light: #b2ebf2;
+  --color-pixel-gray: #455a64;
+  --color-pixel-dark: #1b002c;
+}
+
+/* Vampire Castle Theme */
+html[data-theme="vampire"] {
+  --color-pixel-black: #0a0404;
+  --color-pixel-purple: #2d080c;
+  --color-pixel-red: #800000;
+  --color-pixel-orange: #a3141a;
+  --color-pixel-yellow: #ffcc00;
+  --color-pixel-lime: #c0c0c0;
+  --color-pixel-green: #4a0e17;
+  --color-pixel-teal: #1f0406;
+  --color-pixel-blue: #100303;
+  --color-pixel-indigo: #32090b;
+  --color-pixel-sky: #9a0007;
+  --color-pixel-cyan: #d32f2f;
+  --color-pixel-white: #e0d5d5;
+  --color-pixel-light: #9e8e8e;
+  --color-pixel-gray: #5a4d4d;
+  --color-pixel-dark: #1c0d0e;
+}
+
 /* ========================================
    BASE STYLES
    ======================================== */
@@ -119,6 +184,29 @@ body {
 a, button, [role="button"], input[type="submit"],
 .cursor-pointer, .pixel-btn {
   cursor: url('/cursors/pixel-hand.svg') 8 0, pointer;
+}
+
+/* Styling standard text links */
+a:not(.pixel-border):not(.block) {
+  color: var(--color-pixel-sky);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-style: dotted;
+  transition: all 0.2s ease;
+}
+
+a:not(.pixel-border):not(.block):hover {
+  color: var(--color-pixel-yellow);
+  text-decoration-style: solid;
+  text-shadow: 0 0 6px var(--color-pixel-yellow);
+}
+
+/* Hides default cursor only when Custom Cursor component successfully loaded */
+@media (pointer: fine) {
+  html.custom-cursor-enabled,
+  html.custom-cursor-enabled * {
+    cursor: none !important;
+  }
 }
 
 /* Selection color */
@@ -323,7 +411,7 @@ a, button, [role="button"], input[type="submit"],
 }
 
 .inventory-slot:hover {
-  background-color: #3a4466;
+  background-color: var(--color-pixel-gray);
 }
 
 .inventory-slot::before {
