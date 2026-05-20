@@ -145,7 +145,7 @@ export default function CursorFollower() {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute pointer-events-none z-50"
+          className="absolute pointer-events-none z-[9999]"
           style={{
             left: `${p.x}px`,
             top: `${p.y}px`,
@@ -162,7 +162,7 @@ export default function CursorFollower() {
 
       {/* 2. Floating Adaptive Cursor Follower */}
       <div
-        className="fixed pointer-events-none z-50 transition-transform duration-75 ease-out"
+        className="fixed pointer-events-none z-[9999] transition-transform duration-75 ease-out"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
